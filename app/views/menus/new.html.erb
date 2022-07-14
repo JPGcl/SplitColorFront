@@ -1,0 +1,31 @@
+
+<div class="segment align-center-box">
+  <h3>Nuevo menú</h3>
+</div>
+
+<div class="align-center-box">
+  <!-- HOME -->
+  <%= link_to welcome_index_url, style: "text-decoration: none; display: inline-block" do %>
+    <i class="fa fa-home text- llink" aria-hidden="true" title="Ir al Home"></i>
+  <% end %>
+  &nbsp;
+  &nbsp;
+  <!-- VOLVER -->
+  <%= link_to menus_path, style: "text-decoration: none; display: inline-block" do %>
+    <i class="fa fa-fast-backward llink" aria-hidden="true" title="Volver"></i>
+  <% end %>
+</div>
+<br>
+<div id="cards align-center-box">
+    <div id="" class="table-responsive">
+      <table class="table table-dark bg-light p-3 mb-5 bg-body rounded shadow">
+        <tbody>
+          <tr>
+            <td scope="row">
+              <%= render "form", menu: @menu %>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+</div>
+<br>

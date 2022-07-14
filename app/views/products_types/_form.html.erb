@@ -1,0 +1,27 @@
+<%= form_with(model: products_type) do |form| %>
+  <% if products_type.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(products_type.errors.count, "error") %> prohibited this products_type from being saved:</h2>
+
+      <ul>
+        <% products_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :product_type_description, style: "display: block" %>
+    <%= form.text_field :product_type_description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

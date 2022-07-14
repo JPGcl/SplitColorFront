@@ -1,0 +1,51 @@
+<div class="align-center-box">
+  <h3>Registrarse</h3>
+</div>
+
+<div class="align-center-box">
+  <br>
+  <br>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <br>
+
+  <div class="field">
+    <%= f.label "Nombre de usuario" %>
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", 
+                      value: (Faker::Name.first_name_neutral + rand(1000).to_s) %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.label "EMail" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.label "Clave" %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> caracteres como mínimo)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.label "Confirme clave" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+<br>
+<br>
+</div>
+
+<div class="align-center-box">
+  <%= render "devise/shared/links" %>
+</div>

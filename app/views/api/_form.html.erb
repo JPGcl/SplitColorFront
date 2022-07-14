@@ -1,0 +1,19 @@
+  <div class="containers">
+    <div class="components">
+        <%= form_with scope: "news", url: api_news_url do |form| %>  
+            <!-- PARAMETROS DE BUSQUEDA -->
+            <%= form.label "Fecha desde :", style: "display: block" %>
+            <%= form.text_field :date1 %>  
+            <%= form.label "Fecha hasta :", style: "display: block" %>
+            <%= form.text_field :date2 %>  
+            <!-- % = form.submit "Filtrar" % -->  
+            <!-- GUARDAR -->
+            <button type="submit" class="btn" method="post" title="Buscar">
+                <i class="fa fa-search llink" aria-hidden="true"></i>&nbsp;
+            </button>
+            <%= button_to "buscar", api_news_url, method: :post %>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+<h4><%= p "2 >>> ", @newspost.class %></h4>

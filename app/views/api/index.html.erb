@@ -1,0 +1,52 @@
+  <div id="" class="table-responsive rounded shadow">
+      <table class="table table-dark p-3 mb-5 rounded shadow">
+        <tbody class="">
+          <tr scope="row">
+            <h2>API SplitColor</h2>
+              <!-- HOME -->
+              <%= link_to welcome_index_url, style: "text-decoration: none; display: inline-block" do %>
+                <i class="fa fa-home llink" aria-hidden="true" title="Ir al Home"></i>
+              <% end %>
+              &nbsp;
+              <!-- VOLVER -->
+              <%= link_to menus_path, style: "text-decoration: none; display: inline-block" do %>
+                <i class="fa fa-fast-backward llink" aria-hidden="true" title="Volver"></i>
+              <% end %>
+          </tr>
+          <tr scope="row">
+            <td scope="col">
+              <h4>Acceda a la API mediante Postman, curl u otro cliente consumidor:</h4>
+              <br>
+              <h4>End point:</h4> 
+                &nbsp;&nbsp;&nbsp;Local  : http://127.0.0.1:3000/api/news
+                <br>
+                &nbsp;&nbsp;&nbsp;Remoto : https://afternoon-reaches-16528.herokuapp.com/api/news
+              <br>
+              <h4>Parámetros:</h4>
+                &nbsp;&nbsp;&nbsp;date1 = Fecha desde en formato AAAA-MM-DD
+                <br>
+                &nbsp;&nbsp;&nbsp;date2 = Fecha hasta en formato AAAA-MM-DD
+              <br>
+              <h4>Ejemplos de consumo</h4><h5>&nbsp;&nbsp;(las fechas de los datos no necesariamente se corresponen con los ejemplos):</h5>
+                    &nbsp;&nbsp;&nbsp;Local : 
+                  <%= link_to "http://127.0.0.1:3000/api/news?date1=2022-06-01&date2=2022-07-31", "http://127.0.0.1:3000/api/news?date1=2022-06-01&date2=2022-07-31", target: "_blank", rel: "alternate" %>
+                <br>&nbsp;&nbsp;&nbsp;Local (sin filtro): 
+                  <%= link_to "http://127.0.0.1:3000/api/news", "http://127.0.0.1:3000/api/news", target: "_blank", rel: "alternate" %>
+                <br>&nbsp;&nbsp;&nbsp;Remoto : 
+                  <%= link_to "https://afternoon-reaches-16528.herokuapp.com/api/news?date1=2022-06-01&date2=2022-07-31", "https://afternoon-reaches-16528.herokuapp.com/api/news?date1=2022-06-01&date2=2022-07-31", target: "_blank", rel: "alternate" %>
+                <br>&nbsp;&nbsp;&nbsp;Remoto (sin filtro): 
+                  <%= link_to "https://afternoon-reaches-16528.herokuapp.com/api/news", "https://afternoon-reaches-16528.herokuapp.com/api/news", target: "_blank", rel: "alternate" %>
+              <br>
+            </td>
+            <td scope="col">
+                  <i class="fa fa-cog fa-spin fa-3x fa-fw llink" aria-hidden="true" ></i>
+            </td>
+          </tr>
+          <tr scope="row">
+          </tr>
+      </tbody>
+    </table>
+</div>
+  
+
+<!-- % = paginate @pager % -->

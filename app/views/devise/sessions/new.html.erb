@@ -1,0 +1,49 @@
+<div class="align-center-box text-white">
+  <h2>Iniciar sesión</h2>
+</div>
+
+<div class="align-center-box text-white">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label "Usuario" %><br />
+      <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "EMail" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Clave" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label "Recuerdame" %>
+      </div>
+    <% end %>
+
+    <br>
+      <div class="actions align-center-box">
+        <!-- %= f.submit "Log in" % -->
+
+        <!-- Iniciar Sesión -->
+        <a class="page-item" onclick="document.getElementById('new_user').submit();" style="text-decoration: none; display: inline-block">
+          <i class="fa fa-sign-in page-link  llink" aria-hidden="true" title="Iniciar sesión"></i>
+        </a>
+        
+        <!-- LINKS DEVISE -->
+        <%= render "devise/shared/links" %>
+
+        <!-- HOME -->
+        <%= link_to welcome_index_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+          <i class="fa fa-home page-link  llink" aria-hidden="true" title="Ir al Home"></i>
+        <% end %>
+
+      </div>    
+  <% end %>
+</div>
+

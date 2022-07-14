@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Images types</h1>
+
+<div id="images_types">
+  <% @images_types.each do |images_type| %>
+    <%= render images_type %>
+    <p>
+      <%= link_to "Show this images type", images_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New images type", new_images_type_path %>

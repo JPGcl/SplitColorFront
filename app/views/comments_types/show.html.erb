@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @comments_type %>
+
+<div>
+  <%= link_to "Edit this comments type", edit_comments_type_path(@comments_type) %> |
+  <%= link_to "Back to comments types", comments_types_path %>
+
+  <%= button_to "Destroy this comments type", @comments_type, method: :delete %>
+</div>

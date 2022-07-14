@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image_type_id: 1
+  description: MyString
+  input_hash: MyString
+  output_hash: MyString
+  image_parent_id: 
+  image_url: MyString
+  image_local_url: MyString
+  date_input_hash: 2022-05-30 16:04:42
+  date_output_hash: 2022-05-30 16:04:42
+
+two:
+  image_type_id: 1
+  description: MyString
+  input_hash: MyString
+  output_hash: MyString
+  image_parent_id: 
+  image_url: MyString
+  image_local_url: MyString
+  date_input_hash: 2022-05-30 16:04:42
+  date_output_hash: 2022-05-30 16:04:42

@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "hbenl.vscode-test-explorer",
+        "connorshea.vscode-test-explorer-status-bar",
+        "wingrunr21.vscode-ruby",
+        "connorshea.vscode-ruby-test-adapter"
+    ]
+}

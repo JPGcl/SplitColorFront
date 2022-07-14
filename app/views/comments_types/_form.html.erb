@@ -1,0 +1,22 @@
+<%= form_with(model: comments_type) do |form| %>
+  <% if comments_type.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comments_type.errors.count, "error") %> prohibited this comments_type from being saved:</h2>
+
+      <ul>
+        <% comments_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :commment_description, style: "display: block" %>
+    <%= form.text_field :commment_description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

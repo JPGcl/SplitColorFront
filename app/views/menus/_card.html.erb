@@ -1,0 +1,22 @@
+<!-- NO LO ESTOY USANDO, REVISAR -->
+
+<%= form_with(model: menu) do |menu| %>
+            <div id="card" class="card align-center-box">
+                <%= link_to @menu.rute, class: "btn llink card", style: "none" do %>
+                    <div class="card-content">
+                    <div class="card-image">
+                        <i class="<%= @menu.icon %>" style="--fa-secondary-opacity: 0.50"></i>
+                    </div>
+                    <div class="card-info-wrapper">
+                        <div class="card-info text-left">
+                        <i class="<%= @menu.icon %> text-left"></i>
+                        <div class="card-info-title text-left">
+                            <h3><%= @menu.name.upcase  %></h3>
+                            <h4><%= @menu.description %></h4>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                <% end %>
+            </div>
+<% end %>

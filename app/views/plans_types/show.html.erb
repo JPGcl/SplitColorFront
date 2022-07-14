@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @plans_type %>
+
+<div>
+  <%= link_to "Edit this plans type", edit_plans_type_path(@plans_type) %> |
+  <%= link_to "Back to plans types", plans_types_path %>
+
+  <%= button_to "Destroy this plans type", @plans_type, method: :delete %>
+</div>

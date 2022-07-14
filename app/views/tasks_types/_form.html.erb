@@ -1,0 +1,22 @@
+<%= form_with(model: tasks_type) do |form| %>
+  <% if tasks_type.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tasks_type.errors.count, "error") %> prohibited this tasks_type from being saved:</h2>
+
+      <ul>
+        <% tasks_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :task_description, style: "display: block" %>
+    <%= form.text_field :task_description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

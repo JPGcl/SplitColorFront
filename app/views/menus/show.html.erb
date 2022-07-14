@@ -1,0 +1,63 @@
+<!-- p style="color: green"><%= notice %></ -->
+<%= flash_message %> 
+
+<!-- HOME -->
+<div class="align-center-box">
+  <%= link_to welcome_index_url, style: "text-decoration: none; display: inline-block" do %>
+    <i class="fa fa-home  llink" aria-hidden="true" title="Ir al Home"></i>
+  <% end %>
+  &nbsp;
+  &nbsp;
+  <!-- VOLVER -->
+  <%= link_to menus_path,  style: "text-decoration: none; display: inline-block" do %>
+    <i class="fa fa-fast-backward llink" aria-hidden="true" title="Volver"></i>
+  <% end %>
+</div>
+
+  <div id="" class="table-responsive align-center-box rounded shadow">
+      <table class="table table-dark  p-2 mb-1 align-center-box rounded shadow">
+        <tbody class="align-center-box">
+          <tr>
+            <td scope="col">
+              <br>
+                <!-- CARD -->
+                <div id="card" class="card align-center-box">
+                  <%= link_to @menu.rute, class: "btn llink card", style: "none" do %>
+                    <div class="card-content">
+                      <div class="card-image">
+                        <i class="<%= @menu.icon %>" style="--fa-secondary-opacity: 0.50"></i>
+                      </div>
+                      <div class="card-info-wrapper">
+                        <div class="card-info align-start-box">
+                          <i class="<%= @menu.icon %> "></i>
+                          <div class="card-info-title">
+                            <h3><%= @menu.name %></h3>
+                            <h4><%= @menu.description %></h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <!-- END CARD -->
+                <br>
+            </td>
+          </tr>
+          <td scope="col">
+            <div class="align-center-box">
+              <h2>
+                <%= button_to @menu, method: :delete, class: "btn llink", style: "block-inline" do %>
+                  <!-- BORRAR -->
+                  <i class="fa fa-trash text-danger llink" style="block-inline" title="Borrar!"></i>
+                  <!-- EDITAR -->
+                  <%= link_to edit_menu_path(@menu), class: "btn llink", style: "block-inline" do %>
+                    <i class="fa fa-pencil-square text-success llink" styele="block-inline" title="Editar"></i>
+                  <% end %>
+                <% end %>
+              </h2>
+            </div>
+          </td>
+        </tbody>
+      </table>
+  </div>
+

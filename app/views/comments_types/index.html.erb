@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Comments types</h1>
+
+<div id="comments_types">
+  <% @comments_types.each do |comments_type| %>
+    <%= render comments_type %>
+    <p>
+      <%= link_to "Show this comments type", comments_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New comments type", new_comments_type_path %>

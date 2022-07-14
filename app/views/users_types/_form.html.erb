@@ -1,0 +1,22 @@
+<%= form_with(model: users_type) do |form| %>
+  <% if users_type.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(users_type.errors.count, "error") %> prohibited this users_type from being saved:</h2>
+
+      <ul>
+        <% users_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_description, style: "display: block" %>
+    <%= form.text_field :user_description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

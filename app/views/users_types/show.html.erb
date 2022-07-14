@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @users_type %>
+
+<div>
+  <%= link_to "Edit this users type", edit_users_type_path(@users_type) %> |
+  <%= link_to "Back to users types", users_types_path %>
+
+  <%= button_to "Destroy this users type", @users_type, method: :delete %>
+</div>

@@ -1,0 +1,90 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="containers">
+    <div class="components">
+      <strong>
+        <div>
+          <%= form.label :name, style: "display: block" %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :last_name, style: "display: block" %>
+          <%= form.text_field :last_name %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :email, style: "display: block" %>
+          <%= form.text_field :email %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :phone, style: "display: block" %>
+          <%= form.text_field :phone %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :password, style: "display: block" %>
+          <%= form.text_field :password %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :user_type_id, style: "display: block" %>
+          <%= form.number_field :user_type_id %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :login_type_id, style: "display: block" %>
+          <%= form.number_field :login_type_id %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :plan_id, style: "display: block" %>
+          <%= form.number_field :plan_id %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :enabled, style: "display: block" %>
+          <%= form.check_box :enabled %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :confirm_email, style: "display: block" %>
+          <%= form.check_box :confirm_email %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :registration_date, style: "display: block" %>
+          <%= form.datetime_field :registration_date %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :discharge_date, style: "display: block" %>
+          <%= form.datetime_field :discharge_date %>
+        </div>
+
+        <div class="llink">
+          <%= form.label :confirmation_email_date, style: "display: block" %>
+          <%= form.datetime_field :confirmation_email_date %>
+        </div>
+
+        <div class="align-center-box">
+          <!-- GUARDAR -->
+          <%= form.submit value: "💾", class: "btn fa-2x llink", Title: "Guardar" %>
+        </div>
+
+      </strong>
+    </div>
+  </div>
+<% end %>

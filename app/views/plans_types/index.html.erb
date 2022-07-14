@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Plans types</h1>
+
+<div id="plans_types">
+  <% @plans_types.each do |plans_type| %>
+    <%= render plans_type %>
+    <p>
+      <%= link_to "Show this plans type", plans_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New plans type", new_plans_type_path %>

@@ -1,0 +1,100 @@
+<% if @users.count == 0 %>
+  <% flash[:info] = "No hay resultados para el filtro seleccionado." %>
+  <%= flash_message %>
+<% end %>
+
+<div class="align-center-box">
+    <h4>Administración de Usuarios</h4>
+</div>
+<br>
+
+<!-- BARRA BUSQUEDA -->
+<nav class="navbar navbar-light p-4 align-center-box rounded shadow">
+  <%= search_form_for @q, remote: true do |f| %>
+    <table class="table-responsive">
+      <tbody>
+        <td scope="row">
+          <%= f.label :name_cont, 'Buscar por nombre de usuario ' %>
+          &nbsp;
+        </td>
+        <td scope="row">
+          <%= f.search_field :name_cont, title: " Puedes usar comodimes del tipo %texto% " %>
+        </td>
+        <td scope="row">
+          <%= f.submit value: "🔍", class: "btn" %>
+        </td>
+      </tbody>
+    </table>
+  <% end %>
+</nav>
+
+<br>
+
+<div id="menus" class="q align-center-box">
+  <div id="cards" class="align-center-box shadow rounded">
+    <table class="table table-responsive p-3 table-dark  table-striped  shadow rounded ">
+      <tbody>
+        <tr scope="row">
+            <div class="align-center-box">
+              <h2>
+                <!-- HOME -->
+                <%= link_to welcome_index_url, style: "text-decoration: none; display: inline-block" do %>
+                  <i class="fa fa-home llink" aria-hidden="true" title="Ir al Home"></i>
+                <% end %>
+                &nbsp;
+                &nbsp;
+                <!-- NUEVO -->
+                <%= link_to new_user_path, style: "text-decoration: none; display: inline-block" do %>
+                  <i class="fa fa-plus-circle text-info llink" aria-hidden="true" title="Agregar un usuario nuevo"></i>
+                <% end %>
+              </h2>
+            </div>
+
+            <% if @users.count > 0 %>
+              <% @users.each do |user| %>
+                <td scope="col">
+                  <!-- % = render "card", menu: @menu % -->
+                  <!-- CARD -->
+                  <div id="card" class="align-center-box">
+                    <!-- % = link_to menu.rute, class: "btn llink card", style: "none" do % -->
+                      <div class="card-content">
+                        <div class="card-image">
+                          <i class="<%= user.username %>" style="--fa-secondary-opacity: 0.50"></i>
+                        </div>
+                        <div class="card-info-wrapper">
+                          <div class="card-info align-start-box">
+                            <i class="<%= user.username %> "></i>
+                            <div class="card-info-title">
+                              <h3><%= user.username %></h3>
+                              <h4><%= user.email %></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- % end % -->
+                  </div>
+                  <!-- END CARD -->
+                  <div class="align-center-box">
+                      <%= button_to user, method: :delete, class: "btn bllink", style: "block-inline" do %>
+                        <!-- BORRAR -->
+                          <i class="fa fa-trash text-danger fa-2x llink" style="block-inline" title="Borrar!"></i>
+                        <!-- EDITAR -->
+                        <%= link_to edit_user_path(user), class: "mybtn bllink" do %>
+                            <i class="fa fa-pencil-square text-success fa-2x bllink" style="block-inline" title="Editar"></i>
+                        <% end %>
+                      <% end %>
+                  </div>
+                </td>
+              <% end %>
+            <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="align-center-box">
+  <%= paginate @users %>
+</div>
+
+

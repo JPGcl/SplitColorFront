@@ -1,0 +1,99 @@
+<%= form_with(model: image) do |form| %>
+  <% if image.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+        <% image.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="text-white">
+  <div>
+    <%= form.label "Tipo de imagen", style: "display: block" %>
+    <%= form.number_field :image_type_id, class: "input-data" %>
+  </div>
+
+  <div>
+    <%= form.label "Usuario", style: "display: block" %>
+    <%= form.text_field :username, value: current_user.username, readonly: "readonly", class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "Descripción", style: "display: block" %>
+    <%= form.text_field :description, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "Imagen principal", style: "display: block" %>
+    <%= form.file_field :main_picture, class: "input-data text-white"  %>
+  </div>
+
+  <div>
+    <%= form.label "Imagenes procesadas", style: "display: block" %>
+    <%= form.file_field :canvas, multiple: true, class: "input-data text-white"  %>
+  </div>
+
+  <div>
+    <%= form.label "Hash de entrada", style: "display: block" %>
+    <%= form.text_field :input_hash, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "Hash de salida", style: "display: block" %>
+    <%= form.text_field :output_hash, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "Imágen de dependancia", style: "display: block" %>
+    <%= form.text_field :image_parent_id, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "URL Cloud", style: "display: block" %>
+    <%= form.text_field :image_url, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "URL Local", style: "display: block" %>
+    <%= form.text_field :image_local_url, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "Fecha hash de entrada", style: "display: block" %>
+    <%= form.datetime_field :date_input_hash, class: "input-data"  %>
+  </div>
+
+  <div>
+    <%= form.label "Fecha hash de salida", style: "display: block" %>
+    <%= form.datetime_field :date_output_hash, class: "input-data"  %>
+  </div>
+
+  <!-- Botonera de NAVEGACIÓN -->
+  <div class="align-center-box">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div>
+      <div class="align-center-box">
+        <!-- GUARDAR -->
+        <%= form.submit value: "💾", class: "page-item page-link llink", style: "text-decoration: none; display: inline-block",  Title: "Guardar" %>
+        
+        <!-- HOME -->
+        <%= link_to welcome_index_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+          <i class="fa fa-home  page-link  llink" aria-hidden="true" title="Ir al Home"></i>
+        <% end %>
+
+        <!-- VOLVER -->
+        <%= link_to images_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+          <i class="fa fa-fast-backward pagination pagination-box page-link llink" aria-hidden="true" title="Volver"></i>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <!-- FIN Botonera de navegación -->
+
+
+<% end %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tasks_type %>
+
+<div>
+  <%= link_to "Edit this tasks type", edit_tasks_type_path(@tasks_type) %> |
+  <%= link_to "Back to tasks types", tasks_types_path %>
+
+  <%= button_to "Destroy this tasks type", @tasks_type, method: :delete %>
+</div>

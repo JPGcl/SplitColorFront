@@ -1,0 +1,580 @@
+<% # if @images.count == 0 %>
+  <% #flash[:info] = "No hay resultados para el filtro seleccionado." %>
+  <% #= flash_message %>
+<% #end %>
+
+<% categoria_imagenes = ['animals','arch','nature','people','tech'] %>
+  
+      <!-- BOTONERA DE LOGIN/LOGOUT -->
+      <div class="align-start-box"  style="block-inline">
+        <% if user_signed_in? %>
+          <i class="fa fa-user-circle-o text-info sombra page-item page-link llink" style="block-inline" title="Usuario actual"><%= " #{current_user.username}  " %></i>
+          <!-- SALIR -->
+          <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+            <i class="fa fa-sign-out pagination pagination-box page-link llink" aria-hidden="true" title="Cerrar la sesión"></i>
+          <% end %>
+        <% else %>
+          <!-- ENTRAR -->
+          <%= link_to new_user_session_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+            <i class="fa fa-sign-in page-link  llink" aria-hidden="true" title="Iniciar sesión"></i>
+          <% end %>
+        <% end %>
+        <!-- FIN BOTONERA DE LOGIN/LOGOUT -->
+      </div>
+
+
+
+  <!-- Contenedor del diseño -->
+  <div class="app-container align-center-box" >
+
+    <div class="app-left">
+      <div class="app-header align-end-box" >
+        <div class="app-header-logo content-title">
+          <!-- img src="< % = asset_path('images/logo.png') %>" alt="Logo" -->
+          <i>Splitcolor.com</i>
+        </div>
+        <!-- Barra de busqueda -->
+        <div class="app-filter-wrapper" style="block-inline">
+          <button class="filter-dropdown-button">
+            <span>Categorías</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <!-- Texto de búsqueda y botón -->
+          <%= search_form_for @q, remote: true do |f| %>
+            <!-- % = f.label :name_cont, 'Categorías' % -->
+            <%= f.search_field :description_cont, class: "filter-search-input", placeholder: "🔍Buscar...", title: " Puedes usar comodimes del tipo %texto% " %>
+            <%= f.submit value: "", class: "btn active", style: "visibility: hidden;"  %>
+          <% end %>
+          <!-- FIN Texto de búsqueda y botón -->
+        </div>
+        <!-- FIN Barra de busqueda -->
+      </div>
+
+      <!-- Panel izquierdo; colección de imagenes del usuario -->
+      <div class="app-left-content">
+        <div class="app-left-content-header">
+          <h1 class="content-title"> <strong>Composiciones</strong> | <i>Procesos</i></h1>
+          <!-- a href="#" class="content-link">Ver más</ -->
+        </div>
+
+        <div class="app-content-field">
+          <div id="product-boxes" class="product-boxes">
+            <div class="product-box-wrapper three" style="block-inline">
+              <% if @images.count > 0 %>
+                <% @images.each_with_index do |image, i| %>
+                  <!-- Imágen destacada -->
+                  <% if i == 0 %>
+                    <!-- TODO: Debería ser la agregada más reciente -->
+                    <!-- Imágen NO es FAVORITA -->
+                    <% p "****( DESTACADA 1)**** current_user.favorited?(image) : #{current_user.favorited?(image)} ********" %>
+                    <% p "****( DESTACADA 2)**** !current_user.favorited?(image) : #{!current_user.favorited?(image)} ********" %>
+                    <% p "****( DESTACADA 3)**** image.canvas.attached? : #{image.canvas.attached?} ********" %>
+                    <% p "****( DESTACADA 4)**** current_user.username  : #{current_user.username} ********" %>
+                    <% p "****( DESTACADA 5)**** image.username         : #{image.username} ********" %>
+                    <% p "****( DESTACADA 6)**** current_user.id        : #{current_user.id} ********" %>
+                    <% p "****( DESTACADA 7)**** @images.count          : #{@images.count} ********" %>
+                    <% p "****( DESTACADA 8)**** image.description      : #{image.description} ********" %>
+                    
+                      <!-- Imagenes destacadas me las salto ya que van en el panel inferior -->
+                      <div class="product-box" style="block-inline">
+                          <!-- % = p "Imagendestacada" %>
+                          < % = p "\timage.main_picture.attached? : # {image.main_picture.attached?}" %>
+                          < % = p "\timage.main_picture.blank? : # {image.main_picture.blank?}" % -->
+                          <% if image.main_picture.attached? == true %>
+                            <%= image_tag image.main_picture.variant(resize_to_limit: [390, 400]), class: "product-box-image" %>
+                          <% else %>
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                          <% end %>
+
+
+                        <!-- i class="product-box-image < % = image.icon %>"></ -->
+                        <!-- 
+                        <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                        < % = image_tag imagen, class: "product-box-image"  %>
+                        -->
+
+                        <div class="product-box-details">
+                          <%= image.name %>
+                          <%= image.description %>
+
+                            <!-- Opciones sobre la Imagen -->
+                            <div class="align-start-box">
+                              <!-- FAVORITO -->
+                              <%= button_to toggle_favorite_image_path(image), remote: true, method: :post, class: "btn llink", style: "" do %>
+                                <i class="fa <%= current_user.favorited?(image) ? "fa-star" : "fa-star-o" %> text-warning sombra llink" title="Fijar como favorito"></i>
+                              <% end %>
+
+                              <!-- BORRAR -->
+                              <%= link_to image, class: "btn llink", style: "block-inline", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro/a de eliminar?\n \tEsta acción, adicionalmente, eliminará lo siguiente (si corresponde):\n \t\t* Las imagenes CMYK asociadas.\n \t\t* El preview del proceso.\n \t\t* Los comentarios y feedback.\n \t\t* Las solicitudes de impresión a proveedores." } do %>
+                                <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                              <% end %>
+                              <!-- BORRAR -->
+                              <!-- % = button_to image, method: :delete, class: "btn llink", style: "block-inline" do %>
+                                <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                              < % end % -->
+
+                              <!-- EDITAR -->
+                              <%= link_to edit_image_path(image), class: "btn llink", style: "block-inline" do %>
+                                <i class="fa fa-pencil text-success sombra llink" styele="block-inline" title="Editar"></i>
+                              <% end %>
+
+                              <% if image.canvas.attached? %>
+                                <!-- VER -->
+                                <!-- %= link_to edit_image_path(image), class: "btn llink", style: "block-inline" do % -->
+                                  <i class="fa fa-eye text-info sombra llink" styele="block-inline" title="Ver salida del proceso" onclick="image_ralacionada_html();"></i>
+                                <!-- % end % -->
+                              <% end %>
+
+                            </div>
+                            <!-- FIN Opciones sobre la Imagen -->
+
+                        </div>
+                      </div>
+                  <!-- FIN Imágen destacada -->
+                  <% else %>
+                    <!--Imágenes comunes -->
+                    <% if i < 4 %>
+                      <!--Imágen es NORMAL  -->
+                    <% p "****( NORMAL 0)**** current_user.favorited?(image) : #{current_user.favorited?(image)} ********" %>
+                    <% p "****( NORMAL 0)**** image.description               : #{image.description} ********" %>
+
+
+                      <% if !current_user.favorited?(image) %>
+                        <!-- Set de imágenes comunes -->
+                        <div class="product-box medium" style="block-inline">
+                          <!-- i class="product-box-image < % = image.icon %>"></ -->
+
+                          <!-- % = p "Imagen Normal" % -->
+                          <% #= p "image.main_picture.attached? : #{image.main_picture.attached?}" %>
+                          <% #= p "image.main_picture? :   #{image.main_picture}" %>
+                          <!-- % = p "image.main_picture.blank? : # {image.main_picture.blank?}" %>
+                          < % = p "image.main_picture.first? :  # {image.main_picture.first?}" % -->
+                    <% p "****( NORMAL 1)**** current_user.favorited?(image) : #{current_user.favorited?(image)} ********" %>
+                    <% p "****( NORMAL 2)**** !current_user.favorited?(image) : #{!current_user.favorited?(image)} ********" %>
+                    <% p "****( NORMAL 3)**** image.canvas.attached?          : #{image.canvas.attached?} ********" %>
+                    <% p "****( NORMAL 4)**** current_user.username           : #{current_user.username} ********" %>
+                    <% p "****( NORMAL 5)**** image.username                  : #{image.username} ********" %>
+                    <% p "****( NORMAL 6)**** current_user.id                 : #{current_user.id} ********" %>
+                    <% p "****( NORMAL 7)**** @images.count                   : #{@images.count} ********" %>
+                    <% p "****( NORMAL 8)**** image.description               : #{image.description} ********" %>
+
+                          <% if image.main_picture.attached? == true %>
+                            <%= image_tag image.main_picture.variant(resize_to_limit: [390, 400]), class: "product-box-image" %>
+                          <% else %>
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                          <% end %>
+
+                          <div class="product-box-details">
+                            <%= image.name %>
+                            <%= image.description %>
+                            
+                            <!-- Opciones sobre la Imagen -->
+                            <div class="align-start-box">
+                              <!-- FAVORITO -->
+                              <%= button_to toggle_favorite_image_path(image), remote: true, method: :post, class: "btn llink", style: "" do %>
+                                <i class="fa <%= current_user.favorited?(image) ? "fa-star" : "fa-star-o" %> text-warning sombra llink" title="Fijar como favorito"></i>
+                              <% end %>
+
+                              <!-- BORRAR -->
+                              <%= link_to image, class: "btn llink", style: "block-inline", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro/a de eliminar?\n \tEsta acción, adicionalmente, eliminará lo siguiente (si corresponde):\n \t\t* Las imagenes CMYK asociadas.\n \t\t* El preview del proceso.\n \t\t* Los comentarios y feedback.\n \t\t* Las solicitudes de impresión a proveedores." } do %>
+                                <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                              <% end %>
+
+                              <!-- EDITAR -->
+                              <%= link_to edit_image_path(image), class: "btn llink", style: "block-inline" do %>
+                                <i class="fa fa-pencil text-success sombra llink" styele="block-inline" title="Editar">
+                                </i>
+                              <% end %>
+
+                              <% if image.canvas.attached? %>
+                                <!-- VER -->
+                                <!-- % = link_to edit_image_path(image), class: "btn llink", style: "block-inline" do % -->
+                                  <i class="fa fa-eye text-info sombra llink" styele="block-inline" title="Ver salida del proceso" onclick="image_ralacionada_html();">
+                                  </i>
+                                <!-- % end % -->
+                              <% end %>
+
+
+                            </div>
+                            <!-- FIN Opciones sobre la Imagen -->
+                          </div>
+                        </div>
+                        <!-- FIN Set de imágenes comunes -->
+                      <% end %>
+                      <!-- FIN Imágen NO es FAVORITA -->
+                    <!--FIN Imágenes comunes -->
+                    
+                    <% else %>
+                      <% p "****( T O D O )**** image.description               : #{image.description} ********" %>
+
+                    <!-- TODO: Esta sección NO SE ESTA VISUALIZANDO -->
+                      <div class="app-content-field second">
+                        <div class="product-box-wrapper three">
+                          <div class="product-box">
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                            <div class="product-box-details">X Mirrors <span>35</span></div>
+                          </div>
+                          <div class="product-box ">
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                            <div class="product-box-details">X Plants <span>25</span></div>
+                          </div>
+                          <div class="product-box">
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                            <div class="product-box-details">X Bathroom <span>25</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end  %>
+                <% end %>
+              <% else %>
+                <h3 class="content-title" style="color: red;">No se ha encontrado resultados para el filtro seleccionado</h3>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección FAVORITOS -->  
+        <br>
+        <i class="content-title">Favoritos</i>
+        <div class="app-content-field second">
+          <div class="product-box-wrapper three">
+
+            <!-- % p "****( FAVORITAS )**** @images_favoritos.count : # {@images_favoritas.count}" % -->
+            <% if @images_favoritas.count > 0 %>
+              <% @images_favoritas.each_with_index do |image_favorita, i| %>
+
+                <!-- Mostrar imagenes marcadas como favoritas -->
+                <!-- % if image_favorita.fav == true % -->
+                    <!-- % p "****( FAVORITAS )**** image_favorita.main_picture.attached?: #{image_favorita.main_picture.attached?} ********" % -->
+                    <% p "****( FAVORITO 1)**** current_user.favorited?(image)  : #{current_user.favorited?(image_favorita)} ********" %>
+                    <% p "****( FAVORITO 2)**** !current_user.favorited?(image) : #{!current_user.favorited?(image_favorita)} ********" %>
+                    <% p "****( FAVORITO 3)**** image.canvas.attached?          : #{image_favorita.canvas.attached?} ********" %>
+                    <% p "****( FAVORITO 4)**** current_user.username           : #{current_user.username} ********" %>
+                    <% p "****( FAVORITO 5)**** image.username                  : #{image_favorita.username} ********" %>
+                    <% p "****( FAVORITO 6)**** current_user.id                 : #{current_user.id} ********" %>
+                    <% p "****( FAVORITO 7)**** @images_favoritas.count         : #{@images_favoritas.count} ********" %>
+                    <% p "****( FAVORITO 8)**** image_favorita.description      : #{image_favorita.description} ********" %>
+
+                  <div class="product-box large">
+                    <% if image_favorita.main_picture.attached? == true %>
+                      <%= image_tag image_favorita.main_picture.variant(resize_to_limit: [390, 400]), class: "product-box-image" %>
+                    <% else %>
+                      <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(200..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                      <%= image_tag imagen, class: "product-box-image" %>
+                    <% end %>
+ 
+                    <div class="product-box-details fa-x4">
+                      <%= image_favorita.name %>
+                      <%= image_favorita.description %>
+                      
+                      <!-- Opciones sobre la Imagen -->
+                      <div class="align-start-box">
+
+                        <!-- FAVORITO -->
+                        <%= button_to toggle_favorite_image_path(image_favorita), remote: true, method: :post, class: "btn llink", style: "" do %>
+                          <i class="fa <%= current_user.favorited?(image_favorita) ? "fa-star" : "fa-star-o" %> text-warning sombra llink" title="Quitar de favoritos"></i>
+                        <% end %>
+
+                        <!-- BORRAR -->
+                        <%= link_to image_favorita, class: "btn llink", style: "block-inline", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro/a de eliminar?\n \tEsta acción, adicionalmente, eliminará lo siguiente (si corresponde):\n \t\t* Las imagenes CMYK asociadas.\n \t\t* El preview del proceso.\n \t\t* Los comentarios y feedback.\n \t\t* Las solicitudes de impresión a proveedores.\n Si lo que buscas es sólo quitar de favoritos, utiliza la estrella en lugar del basurero." } do %>
+                          <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                        <% end %>
+
+                        <!-- EDITAR -->
+                        <%= link_to edit_image_path(image_favorita), class: "btn llink", style: "block-inline" do %>
+                          <i class="fa fa-pencil text-success sombra llink" styele="block-inline" title="Editar"></i>
+                        <% end %>
+
+                        <% if image_favorita.canvas.attached? %>
+                          <!-- VER -->
+                          <%= link_to edit_image_path(image_favorita), class: "btn llink", style: "block-inline" do %>
+                            <i class="fa fa-eye text-info sombra llink" styele="block-inline" title="Ver salida del proceso" onclick="image_ralacionada_html();"></i>
+                          <% end %>
+                        <% end %>
+
+                      </div>
+                      <!-- FIN Opciones sobre la Imagen -->
+                    </div>
+                  </div>
+                <!-- FIN Mostrar imagenes marcadas como favoritas -->
+              <% end %>
+            <!-- % else % -->
+              <!-- h3 class="content-title" style="color: red;">No se hay resultados para el filtro seleccionado</!-->
+            <% end %>
+          </div>
+        </div>
+        <!-- FIN Sección FAVORITOS -->
+      </div>
+
+        <!-- Botonera de NAVEGACIÓN -->
+        <div class="align-center-box">
+          <!-- Paginación -->  
+          <%= paginate @images %>
+          <!-- FIN Paginación -->
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="align-start-box">
+            <!-- HOME -->
+            <%= link_to welcome_index_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+              <i class="fa fa-home  page-link  llink" aria-hidden="true" title="Ir al Home"></i>
+            <% end %>
+
+            <!-- NUEVO -->
+            <%= link_to new_image_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+              <i class="fa fa-plus page-link llink" aria-hidden="true" title="Nuevo"></i>
+            <% end %>
+
+            <!-- VOLVER -->
+            <%= link_to images_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+              <i class="fa fa-fast-backward pagination pagination-box page-link llink" aria-hidden="true" title="Volver"></i>
+            <% end %>
+
+          </div>
+        </div>
+        <!-- FIN Botonera de navegación -->
+
+
+    </div>
+    <!-- FIN CONTENIDO -->
+
+
+    <!-- Panel derecho; imagenes y parámetros de la imagén clickeada de la colección de imágenes -->
+    <div class="app-right">
+
+      <button class="app-right-hide">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- % = image_relacionada = render partial: "image_relac" 
+      #p sanitize(@image_relacionada) 
+      % -->
+      <!-- %  p "================#{image_relacionada}=============#{image_relacionada.methods}==============================" % --> 
+
+      <!-- % gon.image_rel = render partial: "image_relacionada" % -->
+
+      <!-- div id="image_rel" class="app-right-content" dataimage='< % image_relacionada % >' -->
+      <div id="image_rel" class="app-right-content">
+        <!-- % if image_favorita.canvas.attached? % -->
+        <!-- % = raw image_relacionada % -->
+
+          <ul class="product-list">
+            <li class="product-list-item fadeIn">
+              <div class="product-img-wrapper">
+                <img id="cmyk-1" class="product-image" src=""/>
+                <i class="product-image fa fa-picture-o fa-2xl text-white align-center-box"></i>
+              </div>
+              <div class="product-list-itemContent">
+                <div class="product-info">
+                  <h2 class="product-info-header">
+                    Gato (C)
+                  </h2>
+                  <p class="product-info-subheader">
+                    125.00 $ <span class="product-color">Yellow</span>
+                  </p>
+                </div>
+                <div class="product-amount-wrapper">
+                  <button class="product-amount-button increase">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <span class="product-amount">2</span>
+                  <button class="product-amount-button decrease">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li class="product-list-item fadeIn">
+              <div class="product-img-wrapper">
+                <img id="cmyk-2" class="product-image" src=""/>
+                <i class="product-image fa fa-picture-o fa-2xl text-white align-center-box"></i>
+              </div>
+              <div class="product-list-itemContent">
+                <div class="product-info">
+                  <h2 class="product-info-header">
+                    Gato (M)
+                  </h2>
+                  <p class="product-info-subheader">
+                    225.00 $ <span class="product-color">Gray</span>
+                  </p>
+                </div>
+                <div class="product-amount-wrapper">
+                  <button class="product-amount-button increase">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <span class="product-amount">1</span>
+                  <button class="product-amount-button decrease">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li class="product-list-item fadeIn">
+              <div class="product-img-wrapper">
+                <img id="cmyk-3" class="product-image" src=""/>
+                <i class="product-image fa fa-picture-o fa-2xl text-white align-center-box"></i>
+              </div>
+              <div class="product-list-itemContent">
+                <div class="product-info">
+                  <h2 class="product-info-header">
+                    Gato (Y)
+                  </h2>
+                  <p class="product-info-subheader">
+                    225.00 $ <span class="product-color">Gray</span>
+                  </p>
+                </div>
+                <div class="product-amount-wrapper">
+                  <button class="product-amount-button increase">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <span class="product-amount">1</span>
+                  <button class="product-amount-button decrease">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li class="product-list-item fadeIn">
+              <div class="product-img-wrapper">
+                <img id="cmyk-4" class="product-image" src=""/>
+                <i class="product-image fa fa-picture-o fa-2xl text-white align-center-box"></i>
+              </div>
+              <div class="product-list-itemContent">
+                <div class="product-info">
+                  <h2 class="product-info-header">
+                    Gato (K)
+                  </h2>
+                  <p class="product-info-subheader">
+                    225.00 $ <span class="product-color">Gray</span>
+                  </p>
+                </div>
+                <div class="product-amount-wrapper">
+                  <button class="product-amount-button increase">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <span class="product-amount">1</span>
+                  <button class="product-amount-button decrease">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+
+            <li class="product-list-item fadeIn">
+              <div class="product-img-wrapper">
+                <img id="cmyk-5" class="product-image" src=""/>
+                <i class="product-image fa fa-picture-o fa-2xl text-white align-center-box"></i>
+              </div>
+              <div class="product-list-itemContent">
+                <div class="product-info">
+                  <h2 class="product-info-header">
+                    Gato (W)
+                  </h2>
+                  <p class="product-info-subheader">
+                    105.00 $ <span class="product-color">Gray</span>
+                  </p>
+                </div>
+                <div class="product-amount-wrapper">
+                  <button class="product-amount-button increase">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <span class="product-amount">1</span>
+                  <button class="product-amount-button decrease">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li class="product-list-item fadeIn">
+              <div class="product-img-wrapper">
+                <img id="cmyk-5" class="product-image" src=""/>
+                <i class="product-image fa fa-picture-o fa-2xl text-white align-center-box"></i>
+              </div>
+              <div class="product-list-itemContent">
+                <div class="product-info">
+                  <h2 class="product-info-header">
+                    Gato Preview
+                  </h2>
+                  <p class="product-info-subheader">
+                    105.00 $ <span class="product-color">Gray</span>
+                  </p>
+                </div>
+                <div class="product-amount-wrapper">
+                  <button class="product-amount-button increase">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <span class="product-amount">1</span>
+                  <button class="product-amount-button decrease">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        <!-- % end % -->
+
+
+        <div class="product-details fadeIn">
+          <div class="product-details-line">
+            <span class="product-details-text">Sub Total</span>
+            <span class="product-details-text amount">455.00 $</span>
+          </div>
+          <div class="product-details-line">
+            <span class="product-details-text">Shipment</span>
+            <a href="#" class="product-details-link">Check details</a>
+            <span class="product-details-text amount">15.00 $</span>
+          </div>
+          <div class="product-details-line">
+            <span class="product-details-text">Discount</span>
+            <a href="#" class="product-details-link">Remove</a>
+            <span class="product-details-text amount">-10.00 $</span>
+          </div>
+          <div class="product-details-summary">
+            <span class="product-details-text">Total</span>
+            <span class="product-details-text amount">460.00 $</span>
+          </div>
+        </div>
+      </div>
+      <button class="checkout-button">Un botón que hace algo...</button>
+    </div>
+  </div>
+<p style="color: green"><%= notice %></p>
+

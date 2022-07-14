@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tasks_config %>
+
+<div>
+  <%= link_to "Edit this tasks config", edit_tasks_config_path(@tasks_config) %> |
+  <%= link_to "Back to tasks configs", tasks_configs_path %>
+
+  <%= button_to "Destroy this tasks config", @tasks_config, method: :delete %>
+</div>

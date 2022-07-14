@@ -1,0 +1,265 @@
+* {
+  font-display: swap;
+  font-family: "Montserrat";
+  /*color: rgb(22, 21, 21);*/
+}
+
+li {
+  color: #772b35;
+}
+:root {
+  --bg-color: rgb(20, 20, 20);
+  --card-color: rgb(23, 23, 23);
+  --size-scale-in: 20;
+  --size-scale-out: 50;
+  --a: 360;
+}
+
+
+#llink {
+  z-index: 99; 
+ }
+.llink {
+  z-index: 99; 
+ }
+
+ #bllink {
+  z-index: 100; 
+ }
+.bllink {
+  z-index: 100; 
+ }
+
+html {
+  font-display: swap;
+  font-family: "Montserrat";
+  /*font: 2vmin/1.1 "Montserrat";*/
+  /*overflow: hidden;*/ 
+  background: rgb(15, 82, 153);
+  background: none;
+}
+xx {
+  background: none;  
+}
+/*body, head {*/
+/*head {
+  display: block;
+  font-size: 10px;
+  color: transparent;
+}
+*/
+/*
+head::before, head::after,
+body::before, body::after {
+*/
+body::before, head::after {
+  position: fixed;
+  top: 20%;
+  left: 100%;
+  width: 0.161803398874988em;
+  height: 0.161803398874988em;
+  content: "- ";
+  mix-blend-mode: screen;
+  animation: 1s -2s move infinite ease-in-out alternate;
+}
+/* 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 */
+
+
+
+
+
+
+
+body::before {
+  text-shadow:  1.2070345066em 0.9784367276em 7px rgba(157, 3, 159, 0.9), 0.1522243784em -0.4145641513em 7px rgba(255, 0, 15, 0.9), -0.0146754407em 1.3289365596em 7px rgba(8, 75, 126, 0.9), 1.7676032348em 0.5199940167em 7px rgba(5, 132, 30, 0.9), 0.9018874723em 0.4624017963em 7px rgba(255, 5, 0, 0.9), 2.4606458001em -0.450338732em 7px rgba(135, 2, 2, 0.9), 1.5824287965em 1.9750863805em 7px rgba(255, 0, 91, 0.9), 2.2158663631em 0.8645196152em 7px rgba(255, 0, 156, 0.9), 0.671484809em 0.5156062181em 7px rgba(32, 5, 52, 0.9), 2.2440122959em 0.6656201921em 7px rgba(255, 0, 85, 0.9), 0.2087503729em 2.2753721942em 7px rgba(255, 0, 238, 0.911), 2.3784434691em 1.5700363166em 7px rgba(201, 0, 255, 0.9), 0.243828868em 0.3104854981em 7px rgba(255, 0, 17, 0.9), 1.889157524em 0.5264232327em 7px rgba(223, 0, 255, 0.9), 0.4316462911em 0.3870479331em 7px rgba(31, 11, 247, 0.9), 0.0157026791em -0.3413650577em 7px rgba(255, 0, 203, 0.9), 2.3303395986em 0.8796562024em 7px rgba(255, 111, 0, 0.9), 0.5419124903em 0.0233773479em 7px rgba(0, 206, 255, 0.9), 2.2406827099em 0.1287488923em 7px rgba(45, 66, 7, 0.9), 2.3842955745em 0.9443140167em 7px rgba(51, 82, 22, 0.9), 0.7835290448em 1.7326341548em 7px rgba(255, 0, 236, 0.9), 2.1163799967em 1.5776622461em 7px rgba(158, 0, 255, 0.9), 0.9034494213em 1.9585941031em 7px rgba(0, 102, 255, 0.9), 1.4251014909em -0.0965120352em 7px rgba(255, 0, 212, 0.9), 0.4361076444em -0.3041298932em 7px rgba(0, 241, 255, 0.9), 2.4001608122em 0.7410803243em 7px rgba(255, 0, 181, 0.9), 0.220572844em 0.5531101893em 7px rgba(0, 2, 255, 0.9), 1.6717579218em 1.6076704127em 7px rgba(255, 0, 27, 0.9), 1.3386767498em 0.9099801023em 7px rgba(255, 0, 127, 0.9), -0.2464219826em 1.6492892324em 7px rgba(202, 0, 255, 0.9), 0.9590011941em 2.1670918438em 7px rgba(0, 127, 255, 0.9), 0.260553674em 1.1176010512em 7px rgba(0, 244, 255, 0.9), -0.0315349677em 0.5568407718em 7px rgba(118, 136, 5, 0.9), 1.5542927163em -0.3783433737em 7px rgba(255, 162, 0, 0.9), -0.1053196531em 2.2964571831em 7px rgba(18, 0, 255, 0.9), 1.376012404em 0.3582587008em 7px rgba(141, 0, 255, 0.9), 0.169725667em 0.5008475834em 7px rgba(0, 9, 255, 0.9), 0.5803621865em 2.1225381496em 7px rgba(46, 89, 232, 0.9), 1.7496403073em 0.1783442047em 7px rgba(0, 123, 255, 0.9), 1.8969000773em 1.704754317em 7px rgba(255, 0, 152, 0.9), 0.3233591722em 1.5589305378em 7px rgba(255, 11, 0, 0.9);
+  animation-duration: 40s;
+  animation-delay: -2s;
+} 
+
+body::before {
+  text-shadow:  1.3536682691em 0.8882371509em 7px rgba(14, 73, 30, 0.9), 0.3810414192em 1.9428443848em 7px rgba(17, 142, 50, 0.9), 0.1982210385em -0.2208749351em 7px rgba(255, 0, 29, 0.9), 1.7626647399em 0.8670587446em 7px rgba(255, 0, 96, 0.9), 1.2811126887em 1.5718250696em 7px rgba(182, 0, 255, 0.9), 0.7520094186em -0.3598021306em 7px rgba(255, 111, 0, 0.604), 0.7141141281em 0.3746888912em 7px rgba(0, 167, 255, 0.9), 1.634924452em 0.0708849545em 7px rgba(21, 84, 6, 0.9), -0.0995009993em 2.4132843942em 7px rgba(0, 33, 255, 0.9), 0.3174372059em 1.1673456783em 7px rgba(255, 0, 235, 0.9), 0.370288889em -0.472819007em 7px rgba(27, 178, 0, 0.9), 0.7671624492em 1.9018236841em 7px rgba(255, 224, 0, 0.9), 2.4339980163em 0.882430792em 7px rgba(255, 0, 156, 0.9), 0.4268658895em 1.2515093978em 7px rgba(255, 64, 0, 0.9), -0.3718039456em 1.8296733921em 7px rgba(0, 158, 255, 0.9), 2.0445092539em 1.7725718737em 7px rgba(129, 0, 255, 0.9), 1.2441692056em 2.2448853534em 7px rgba(255, 195, 0, 0.9), 2.3872857943em -0.4401131292em 7px rgba(0, 255, 100, 0.9), 1.3473943454em 1.2356518876em 7px rgba(29, 4, 125, 0.9), 0.3088068574em 0.9892497276em 7px rgba(224, 0, 255, 0.9), 2.4264682551em -0.0790959453em 7px rgba(255, 73, 0, 0.9), 1.5917945919em 1.0809337693em 7px rgba(0, 190, 255, 0.9), -0.0508322123em 0.3567400802em 7px rgba(0, 196, 255, 0.9), 0.5853729049em 1.8915151712em 7px rgba(0, 255, 249, 0.9), 1.1915312306em 1.5407831392em 7px rgba(205, 0, 255, 0.9), 1.8922435104em 0.5416402856em 7px rgba(255, 17, 0, 0.9), -0.4746057948em 0.3701219408em 7px rgba(255, 110, 0, 0.9), -0.400989897em -0.3934701415em 7px rgba(255, 0, 99, 0.9), 1.5430104549em 1.4164150544em 7px rgba(255, 207, 0, 0.9), 0.4419938865em 0.0713149039em 7px rgba(255, 0, 13, 0.9), 0.1254725351em 1.4581464897em 7px rgba(7, 0, 255, 0.9), 0.9782299217em 2.1090551773em 7px rgba(235, 0, 255, 0.9), 0.8739227575em 0.7517811555em 7px rgba(255, 0, 207, 0.9), 1.5703349214em 1.1779537985em 7px rgba(0, 184, 255, 0.9), -0.186895328em 2.0776587576em 7px rgba(171, 0, 255, 0.9), 2.1827625099em -0.0845944878em 7px rgba(0, 255, 198, 0.9), 1.9507102438em 0.1896723325em 7px rgba(255, 0, 59, 0.9), 1.4033478851em -0.1648267682em 7px rgba(255, 48, 0, 0.9), -0.158167115em 1.002302267em 7px rgba(255, 0, 161, 0.9), 1.9730767172em 2.0511258612em 7px rgba(14, 36, 179, 0.9), -0.3779285417em -0.0345446586em 7px rgba(0, 255, 68, 0.483);
+  animation-duration: 40s;
+  animation-delay: -1s;
+}
+
+
+
+headx::before {
+  text-shadow:  1.4562792698em 1.0823199765em 7px rgba(32, 0, 255, 0.9), 1.1369541781em 2.488558718em 7px rgba(255, 37, 0, 0.9), 1.2137228555em 0.4930388042em 7px rgba(255, 0, 116, 0.9), 1.106910059em 1.9141610874em 7px rgba(3, 88, 59, 0.9), 0.8788942544em 1.9121144245em 7px rgba(27, 57, 6, 0.9), 1.5079378419em 0.9040651171em 7px rgba(28, 56, 21, 0.9), -0.2989179476em 0.384111914em 7px rgba(0, 16, 255, 0.9), 1.8638397975em 0.9476379461em 7px rgba(0, 121, 255, 0.9), 2.2784938825em 0.9668110697em 7px rgba(255, 0, 63, 0.9), -0.4548732477em 1.367518573em 7px rgba(95, 0, 255, 0.9), 1.8849615806em 1.6648362115em 7px rgba(221, 0, 255, 0.9), 0.5591303742em 0.682212928em 7px rgba(38, 0, 255, 0.9), 1.3313419657em 2.1193051155em 7px rgba(85, 123, 8, 0.9), 1.9646887337em 1.0879773242em 7px rgba(255, 0, 111, 0.9), 1.6134776604em -0.2727306042em 7px rgba(255, 0, 72, 0.9), 1.3641450489em 2.4649655531em 7px rgba(13, 61, 3, 0.9), 0.9574511525em 0.8050575389em 7px rgba(16, 0, 255, 0.9), 1.6011708173em 1.7506958965em 7px rgba(36, 68, 5, 0.9), 2.1591814941em -0.3228738267em 7px rgba(7, 61, 6, 0.9), 0.4712454281em -0.1115231061em 7px rgba(67, 73, 7, 0.9), -0.0932990872em 0.638849292em 7px rgba(38, 91, 5, 0.9), 1.0027521759em -0.1682061498em 7px rgba(218, 255, 0, 0.9), 2.3030152671em 0.2155721973em 7px rgba(8, 78, 7, 0.9), 1.8461413252em 1.5409676541em 7px rgba(6, 103, 62, 0.9), -0.1571565141em 0.0742968047em 7px rgba(255, 65, 0, 0.9), 0.9813980835em 1.7996218289em 7px rgba(130, 0, 255, 0.9), 0.8236527882em 0.1328613253em 7px rgba(255, 167, 0, 0.9), 2.1657419706em -0.3044487571em 7px rgba(12, 100, 49, 0.9), 0.3586774746em 1.608417493em 7px rgba(255, 217, 0, 0.9), 0.3608105912em 1.1738775576em 7px rgba(22, 175, 37, 0.9), 0.6044559013em 0.5841883502em 7px rgba(0, 255, 208, 0.9), 2.1953671315em 1.8676271423em 7px rgba(212, 0, 255, 0.9), 0.5914313846em 1.5082422089em 7px rgba(255, 0, 147, 0.9), -0.4198200848em -0.094704713em 7px rgba(0, 210, 255, 0.9), 1.536026251em 0.4051441215em 7px rgba(0, 177, 255, 0.9), 0.1251789184em 1.1450911297em 7px rgba(173, 0, 255, 0.9), 2.2455462457em 2.2814760498em 7px rgba(0, 228, 255, 0.9), 0.4308964554em 1.9342380822em 7px rgba(255, 0, 91, 0.9), 0.8033341099em 2.358975323em 7px rgba(255, 164, 0, 0.9), -0.3691679639em 0.0534059697em 7px rgba(0, 208, 255, 0.9), 1.0597582506em -0.0491914236em 7px rgba(0, 149, 255, 0.9);
+  animation-duration: 20s;
+  animation-delay: -2s;
+}
+
+headx::before {
+  text-shadow: 0.1506849405em 1.0983508513em 7px rgba(255, 10, 0, 0.9), 2.31524711em 0.6095764701em 7px rgba(255, 0, 1, 0.9), 0.9263328958em 1.9296108315em 7px rgba(7, 90, 58, 0.9), 2.0995485149em -0.1614620626em 7px rgba(255, 0, 168, 0.9), 0.589449873em 1.9208343425em 7px rgba(57, 129, 23, 0.9), 0.0321737435em 0.2374523866em 7px rgba(56, 75, 11, 0.9), 1.2065592756em 0.4559314133em 7px rgba(0, 197, 255, 0.9), 2.3699011237em 0.7345961613em 7px rgba(18, 94, 18, 0.9), 0.5094023042em 1.4182549577em 7px rgba(255, 123, 0, 0.9), 2.3033602275em 0.1175113232em 7px rgba(255, 0, 199, 0.9), 1.591944699em -0.0040122479em 7px rgba(255, 161, 0, 0.9), 2.242512174em 2.353422289em 7px rgba(226, 0, 255, 0.9), 1.5239482735em 2.1341748046em 7px rgba(255, 0, 194, 0.9), 2.1335930364em 1.1205512437em 7px rgba(255, 0, 67, 0.9), 1.052737943em 2.4291648404em 7px rgba(255, 0, 55, 0.9), 2.1065145079em 0.0656278481em 7px rgba(63, 0, 255, 0.9), -0.1666602812em 1.958974649em 7px rgba(0, 230, 255, 0.9), 2.2428787052em 2.0565706623em 7px rgba(13, 93, 41, 0.9), 1.5516942977em 1.6980615045em 7px rgba(226, 138, 5, 0.9), 0.1146331736em 2.2112811984em 7px rgba(255, 0, 71, 0.9), -0.2504705107em 1.3327757677em 7px rgba(72, 0, 255, 0.9), 1.7727851576em 1.0643093394em 7px rgba(0, 177, 255, 0.9), 1.3134159709em 0.8223738923em 7px rgba(95, 0, 255, 0.9), 0.2665165224em 0.871278128em 7px rgba(255, 0, 208, 0.9), 1.8586106469em -0.0574719213em 7px rgba(0, 144, 255, 0.9), 1.5366807355em 0.0760348044em 7px rgba(46, 82, 8, 0.9), 1.3881748982em 1.0982929779em 7px rgba(255, 0, 161, 0.9), 1.6006209376em 1.9836860377em 7px rgba(255, 138, 0, 0.9), 1.838221078em 1.8860359571em 7px rgba(255, 154, 0, 0.9), 0.6431913504em 1.3377680396em 7px rgba(255, 244, 0, 0.9), 1.9066057708em 0.6087224713em 7px rgba(3, 69, 34, 0.9), 1.893667334em 2.4822485532em 7px rgba(255, 29, 0, 0.9), 1.1163082543em 0.8918003977em 7px rgba(0, 164, 255, 0.9), 1.5441527397em 0.6502504098em 7px rgba(16, 94, 31, 0.9), -0.1804372752em 0.5109546419em 7px rgba(255, 0, 194, 0.9), 0.1482082883em 1.5148683533em 7px rgba(255, 167, 0, 0.9), 1.9512602255em 2.2416536105em 7px rgba(82, 0, 255, 0.9), -0.3899693446em 1.1138339844em 7px rgba(255, 0, 13, 0.9), 1.085426551em 1.7586873986em 7px rgba(43, 106, 19, 0.9), 0.1287054077em -0.428454228em 7px rgba(220, 0, 255, 0.9), 0.9195311148em 1.1696769783em 7px rgba(0, 55, 255, 0.9);
+  animation-duration: 10s;
+  animation-delay: -1s;
+}
+
+
+html::before {
+  z-index: 50;
+  content: "SplitColor.com\a Tu diseño, tu estilo\a \a Emprendimiento Ruby on Rails:\a MVP - FASE 1: Separación de colores CMYK\a Juan Gutiérrez Ortega\a\a Hito 1 ✓ \a Hito 2 ✓\a Hito 3 ✍︎\a Hito 4 ✍︎";
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  text-shadow: 3 31 10px #000;
+  white-space: pre-wrap;
+  color: rgb(0, 0, 0);
+  position: fixed;
+  vertical-align: text-top;
+  top: 1em;
+  left: 2em;
+  transform: translate(0%, 0%);
+  text-align: left;
+
+}
+
+html:first-line {
+  font-size: 300%;
+  font-weight: 600; 
+  font-style: italic;
+  letter-spacing: 0;
+  color: #E91E63  ;
+  background:  linear-gradient(to bottom, #000428, #004e92);
+  text-align: center;
+  text-shadow:rgb(23, 23, 23) ;
+
+}
+
+@keyframes move {
+  from {
+    transform: rotate(  0deg ) scale(var(--size-scale-in)) translateX(-5px);
+  }
+  to {
+    transform: rotate( 360deg) scale(var(--size-scale-out)) translateX(-10px);
+  }
+}
+
+
+
+
+:root {
+  --bg-color: rgb(10,   10, 10);
+  --card-color: rgb(23, 23, 23);
+  --card-width: 242px;
+  --card-height: 200px;
+}
+
+body {
+  align-items: center;
+  /*background-color: var(--bg-color);*/
+  background: url('/assets/img.jpg') no-repeat center center;
+  background-size: cover;
+  
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: 0px;
+  /*overflow: hidden;*/ 
+  padding: 0px;
+}
+
+
+/* NOTICE */
+.notice {
+  color: #18603a;
+  background: #d5f1de;
+  border-color: #c4ebd1;
+ }
+ 
+ .info {
+  color: #1b508f;
+  background: #d6ebff;
+  border-color: #c6e2ff;
+ }
+
+ .warning {
+  color: #815c15;
+  background: #feefd0;
+  border-color: #fde9bd;
+ }
+
+ .error {
+  color: #772b35;
+  background: #fadddd;
+  border-color: #f8cfcf;
+ }
+
+ .base-alert {
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 0.75rem 2.3rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  width: 35%;
+  min-width: 250px;
+  top: 2%;
+  animation: alert-box 3s forwards .8;
+  border-radius: 50px;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.6);
+  margin-left: 30%;
+}
+ 
+
+ @keyframes alert-box {
+  0% {
+    transform: translateX(100%);
+     opacity: 0;
+  }
+  25% {
+    transform: translateX(-10%);
+    opacity: 1;
+  }
+ 
+  50% {
+    transform: translateX(0%);
+  }
+ }
+
+ /* NAVBAR */
+.navbar-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar {
+  align-items: center;
+  background-color: rgba(63, 62, 62, 0.234);
+  display: flex;
+  height: 100px;
+  justify-content: left;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+}
+
+.inputs:hover {
+  z-index: 2;
+  background-color: #004e92;
+  animation: animate 3s linear infinite;
+  text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+}
+
+
+/* BTN */
+.mybtn {
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  /*cursor: pointer;*/
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }

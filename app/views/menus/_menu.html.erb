@@ -1,0 +1,50 @@
+<!-- VACIO -->
+<!--
+<div id="< % = dom_id menu % >">
+  <table class="table table-dark bg-light p-3 mb-5 bg-body rounded shadow">
+    <tbody>
+      <tr>
+        <td scope="row">
+          < % if @menus.count > 0 % >
+              < % =  p @menus.count % >
+            < % @menus.each do |item| % >
+              < % =  p item.name %>
+
+              <div id="card" class="card">
+                < % = link_to item.rute, class: "btn llink card", style: "none" do % >
+                  <div class="card-content">
+                    <div class="card-image">
+                      <i class="< % = item.icon % >" style="--fa-secondary-opacity: 0.50"></i>
+                    </div>
+                    <div class="card-info-wrapper">
+                      <div class="card-info">
+                        <i class="< % = item.icon % >"></i>
+                        <div class="card-info-title neu neu-input">
+                          <h3>< % = item.name % ></h3>
+                          <h4>< % = item.description % ></h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                < % end % >
+              </div>
+              <h2>
+                < % = button_to item, method: :delete, class: "btn llink", style: "block-inline" do % >
+                  < !-- BORRAR -- >
+                  < i class="fa fa-trash text-danger llink" style="block-inline" title="Borrar!"></>
+                  < !-- EDITAR -- >
+                  < % = link_to edit_menu_path(item), class: "btn llink", style: "block-inline" do % >
+                    <i class="fa fa-pencil-square text-success llink" styele="block-inline" title="Editar"></i>
+                  < % end % >
+                < % end % >
+              </h2>
+              < % end % >
+          < % else % >
+            <h1>No hay resultados para el filtro seleccionado.</h1>
+          < % end % >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+-->

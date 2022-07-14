@@ -1,0 +1,27 @@
+.align-start-box {
+    display: flex;
+    justify-content: flex-start;
+  }
+ 
+.align-center-box {
+    display: flex;
+    justify-content: center;
+}
+  
+.align-end-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ztop {
+    z-index: 100120;
+}
+.znegativo {
+    z-index: -1;
+}
+#ztop {
+    z-index: 100120;
+}
+#znegativo {
+    z-index: -1;
+}

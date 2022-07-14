@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tasks configs</h1>
+
+<div id="tasks_configs">
+  <% @tasks_configs.each do |tasks_config| %>
+    <%= render tasks_config %>
+    <p>
+      <%= link_to "Show this tasks config", tasks_config %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tasks config", new_tasks_config_path %>

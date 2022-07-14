@@ -1,0 +1,54 @@
+<%= form_with(model: menu) do |form| %>
+  <% if menu.errors.any? %>
+    <% flash[:error] = pluralize(menu.errors.count, "error")  %>
+    <% flash[:error] += " evita que este menú sea guardado:" %>
+    <% menu.errors.each do |error| %>
+      <% flash[:error] += "<li>" %>
+      <% flash[:error] += error.full_message %>
+      <% flash[:error] += "</li>" %>
+    <% end %>
+    <%= flash_message %>
+  <% end %>
+  
+  <div class="containers">
+    <div class="components">
+      <strong>
+        <div>
+          <%= form.label "Titulo", style: "display: block" %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div class="llink">
+          <%= form.label "Descripción", style: "display: block" %>
+          <%= form.text_field :description %>
+        </div>
+
+        <div class="llink">
+          <%= form.label "Icono Fontawesome", style: "display: block" %>
+          <%= form.text_field :icon %>
+        </div>
+
+        <div class="llink">
+          <%= form.label "Tipo",  style: "display: block;" %>
+          <%= form.text_field :card_type %>
+        </div>
+
+        <div class="llink">
+          <%= form.label "Ruta", style: "display: block" %>
+          <%= form.text_field :rute %>
+        </div>
+
+        <div class="llink">
+          <%= form.label "Fav", style: "display: block" %>
+          <%= form.text_field :fav %>
+        </div>
+
+      </strong>
+
+      <div class="align-center-box">
+        <!-- GUARDAR -->
+        <%= form.submit value: "💾", class: "btn fa-2x llink", Title: "Guardar" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,66 @@
+<h1>Editing user</h1>
+
+<!-- % =  render "form", user: @user % -->
+
+<br>
+
+<div>
+  <%= link_to "Show this user", @user %> |
+  <%= link_to "Back to users", users_path %>
+</div>
+
+  <div class="segment align-center-box">
+    <h3>Editar menú</h3>
+  </div>
+  
+  <div class="align-center-box">
+    <!-- HOME -->
+    <%= link_to user_index_url, style: "text-decoration: none; display: inline-block" do %>
+      <i class="fa fa-home fa-2x  llink" aria-hidden="true" title="Ir al Home"></i>
+    <% end %>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <!-- VOLVER -->
+    <%= link_to users_path, style: "text-decoration: none; display: inline-block" do %>
+      <i class="fa fa-fast-backward fa-2x  llink" aria-hidden="true" title="Volver"></i>
+    <% end %>
+  </div>
+
+<div id="menus" class="q align-center-box">
+  <div id="cards" class="align-center-box shadow rounded">
+    <table class="table table-responsive p-3 table-dark  table-striped  shadow rounded ">
+      <tbody>
+        <tr>
+          <td scope="row">
+            <%= render "form", user: @user %>
+          </td>
+          <td scope="row">
+            <br>
+              <!-- CARD -->
+              <div id="card" class="align-center-box">
+                <!-- % = link_to @user.rute, class: "btn llink card", style: "none" do % -->
+                  <div class="card-content">
+                    <div class="card-image">
+                      <i class="<%= @user.username %>" style="--fa-secondary-opacity: 0.50"></i>
+                    </div>
+                    <div class="card-info-wrapper">
+                      <div class="card-info align-start-box">
+                        <i class="<%= @user.username %> "></i>
+                        <div class="card-info-title">
+                          <h3><%= @user.username %></h3>
+                          <h4><%= @user.email %></h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- % end % -->
+              </div>
+              <!-- END CARD -->
+                <!-- % render "card", menu: @menu % -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

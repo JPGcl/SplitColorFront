@@ -1,0 +1,445 @@
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;  
+    min-width: var(--card-width);
+    /*max-width: var(--card-width);*/
+    /*width: calc(100% - 20px);*/
+  }
+  
+  #cards:hover > .card::after {
+    opacity: 1;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.212);
+    color: #d5f1de;
+    border-radius: 10px;
+    /*cursor: pointer;*/
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: var(--card-height);  
+    height: var(--card-height);
+    min-width: var(--card-width);
+    max-width: var(--card-width);
+    box-shadow: -10px 10px 10px #00000084;
+    }
+  
+  .card:hover::before {
+    opacity: 8;
+  }
+  
+  .card::before,
+  .card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+    background: radial-gradient(
+      100px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(156, 0, 0, 0.676),
+      transparent 20%
+    );
+  
+  /*  animation: animate 4s linear infinite;
+    text-shadow: 10 10 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+  */
+    animation: animate 3s linear infinite;
+    box-shadow: -10px 20px 10px #00000084;
+  
+    z-index: 3;
+  }
+  
+  
+  .card::before {
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(156, 0, 0, 0.676),
+      transparent 30%
+    );
+    z-index: 3;
+  }
+  
+  
+  
+  .cardx::after {  
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.4),
+      transparent 40%
+    );
+    z-index: 1;
+  }
+  
+  
+  .card > .card-content {
+    background-color: var(--card-color);
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    inset: 1px;
+    padding: 1px;
+    position: absolute;
+    
+    z-index: 2;
+  }
+  
+  /* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  .uneditable-input {
+    background-color: var(--card-color) ;
+    border: 1px;
+    border-radius: 10px;
+    color: rgb(177, 211, 239);
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 100%;
+    line-height: 1.5em;
+    padding: 0px;
+    resize: none;
+    width: 100%;
+    z-index: 99;
+  }
+  
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="date"]:focus,
+  input[type="month"]:focus,
+  input[type="time"]:focus,
+  input[type="week"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="color"]:focus,
+  .uneditable-input:focus {
+    background-color: #004e92;
+    border-color: rgba(152, 5, 5, 0.8);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(243, 5, 5, 0.8);
+    outline: 0 none;
+    opacity: 100%;
+  
+    animation: animate 3s linear infinite;
+    text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff; 
+    animation: animate 3s linear infinite;
+  
+  
+    z-index: 99;
+  }
+  
+  
+  
+  
+  
+  
+  textarea:hover,
+  input[type="text"]:hover,
+  input[type="password"]:hover,
+  input[type="datetime"]:hover,
+  input[type="datetime-local"]:hover,
+  input[type="date"]:hover,
+  input[type="month"]:hover,
+  input[type="time"]:hover,
+  input[type="week"]:hover,
+  input[type="number"]:hover,
+  input[type="email"]:hover,
+  input[type="url"]:hover,
+  input[type="search"]:hover,
+  input[type="tel"]:hover,
+  input[type="color"]:hover,
+  .uneditable-input:hover {
+    z-index: 2;
+    background-color: #004e92;
+    
+    animation: animate 3s linear infinite;
+    box-shadow: inset 0 0 30px #0072ff, 0 0 30px #0072ff, 0 0 30px #0072ff, 0 0 30px #0072ff;
+  /*
+    box-shadow: inset 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+    text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+    text-shadow: -1px 2px 1px #000000;
+  */  
+  
+  }
+  
+  
+  
+  
+  h1, h2, h3, h4, span {
+    font-display: swap ;
+    font-family: "Montserrat";
+    color: rgb(240, 240, 240);
+    font-weight: 400;
+    margin: 0px;
+  }
+  
+  i {  
+    color: rgb(240, 240, 240);
+  }
+  
+  .card-image {
+    align-items: center;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .card-image > i {
+    color: #d6ebff;
+    font-size: 6em;
+    opacity: 0.80;
+    /* animation: animate 3s linear infinite;
+    box-shadow: inset 0 0 50px #0072ff, 0 0 50px #0072ff, 0 0 50px #0072ff, 0 0 50px #0072ff;
+    */
+  }
+  
+  .card-info-wrapper {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding: 0px 20px;
+  }
+  
+  .card-info {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-info > i {  
+    font-size: 1em;
+    height: 20px;
+    line-height: 20px;
+    justify-content: flex-center;
+  
+  }
+  
+  .card-info-title > h3 {
+    font-size: 1.1em;
+    line-height: 20px;
+    justify-content: flex-center;
+  }
+  
+  .card-info-title > h4 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    margin-top: 8px;
+    justify-content: flex-center;
+  
+  }
+  
+  /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+  
+  @media(max-width: 1000px) {
+    body {
+      align-items: flex-start;  
+      overflow: auto;
+    }
+    
+    #cards {    
+      max-width: 1000px;
+      padding: 10px 0px;
+    }
+    
+    .card {
+      flex-shrink: 1;
+      width: calc(50% - 4px);
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .card {
+      height: 180px;
+    }
+    
+    .card-image {
+      height: 80px;  
+    }
+    
+    .card-image > i {
+      font-size: 3em;
+    }
+      
+    .card-info-wrapper {
+      padding: 0px 10px;
+    }
+    
+    .card-info > i { 
+      font-size: 0.8em; 
+    }
+    
+    .card-info-title > h3 {
+      font-size: 0.9em;
+    }
+  
+    .card-info-title > h4 {
+      font-size: 0.8em;
+      margin-top: 4px;
+    }
+  }
+  
+  @media(max-width: 320px) {
+    .card {
+      width: 100%;
+    }
+  }
+  
+  /* -- ↓ ↓ ↓ YouTube link styles ↓ ↓ ↓ -- */
+  
+  #youtube-link {
+    bottom: 10px;
+  }
+  
+  #youtube-link > i {
+    color: rgb(239, 83, 80);
+  }
+  
+  #linear-link {
+    bottom: 60px;
+  }
+  
+  #linear-link > i {
+    color: rgb(210, 96, 94);
+  }
+  
+  .link {
+    align-items: center;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;  
+    display: inline-flex;
+    gap: 5px;
+    left: 10px;
+    padding: 10px 20px;
+    position: fixed;
+    text-decoration: none;
+    z-index: 100;
+  }
+  
+  .link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .link > i, .link > span {
+    height: 20px;
+    line-height: 20px;
+  }
+  
+  .link > span {
+    color: white;
+  }
+  
+  
+  /* B */
+  .containerB {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+  }
+  #apple,
+  #twitter,
+  #github,
+  #facebook {
+    font-size: 2em;
+    background-color: #18191f;
+    color: #fff;
+    box-shadow: 2px 2px 2px #00000080, 3px 1px 12px #00000080,
+      2px 2px 10px #00000080, 2px 2px 3px #00000080, inset 2px 2px 10px #00000080,
+      inset 2px 2px 10px #00000080, inset 2px 2px 10px #00000080,
+      inset 2px 2px 10px #00000080;
+    border-radius: 29px;
+    padding: 21px 29px;
+    margin: 10 40px;
+    animation: animate 3s linear infinite;
+    text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+    text-decoration: none;
+  }
+  #twitter {
+    animation-delay: 0.3s;
+  }
+  #facebook {
+    animation-delay: 0.7s;
+  }
+  #github {
+    animation-delay: 0.1s;
+  }
+  
+  @keyframes animate {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Opciones sobre la Imagen -->
+  <div class="align-start-box">
+    <%= button_to menu, method: :update, class: "btn llink", style: "" do %>
+      <!-- FAVORITO -->
+      <i class="fa fa-star text-warning llink" title="Fijar como favorito"></i>
+
+      <%= button_to menu, method: :delete, class: "btn llink", style: "block-inline" do %>
+        <!-- BORRAR -->
+        <i class="fa fa-trash text-danger llink" style="block-inline" title="Borrar!"></i>
+        
+        <!-- EDITAR -->
+        <%= link_to edit_menu_path(menu), class: "btn llink", style: "block-inline" do %>
+          <i class="fa fa-pencil text-success llink" styele="block-inline" title="Editar"></i>
+        <% end %>
+
+      <% end %>
+
+    <% end %>
+  </div>
+  <!-- FIN Opciones sobre la Imagen -->
+
+  

@@ -1,0 +1,434 @@
+<% # if @menus.count == 0 %>
+  <% #flash[:info] = "No hay resultados para el filtro seleccionado." %>
+  <% #= flash_message %>
+<% #end %>
+
+<% categoria_imagenes = ['animals','arch','nature','people','tech'] %>
+  
+  <!-- Contenedor del diseño -->
+  <div class="app-container align-end-box" >
+    <div class="app-left">
+      <div class="app-header align-end-box" >
+        <div class="app-header-logo content-title">
+          <!-- img src="< % = asset_path('images/logo.png') %>" alt="Logo" -->
+          <i>Splitcolor.com</i>
+        </div>
+        <!-- Barra de busqueda -->
+        <div class="app-filter-wrapper" style="block-inline">
+          <button class="filter-dropdown-button">
+            <span>Categorías</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <!-- Texto de búsqueda y botón -->
+          <%= search_form_for @q, remote: true do |f| %>
+            <!-- % = f.label :name_cont, 'Categorías' % -->
+            <%= f.search_field :name_cont, class: "filter-search-input", placeholder: "🔍Buscar...", title: " Puedes usar comodimes del tipo %texto% " %>
+            <%= f.submit value: "", class: "btn active", style: "visibility: hidden;"  %>
+          <% end %>
+          <!-- FIN Texto de búsqueda y botón -->
+        </div>
+        <!-- FIN Barra de busqueda -->
+      </div>
+
+      <!-- Panel izquierdo; colección de imagenes del usuario -->
+      <div class="app-left-content">
+        <div class="app-left-content-header">
+          <h1 class="content-title"> <strong>Composiciones</strong> | <i>Procesos</i></h1>
+          <!-- a href="#" class="content-link">Ver más</ -->
+        </div>
+
+        <div class="app-content-field">
+          <div id="product-boxes" class="product-boxes">
+            <div class="product-box-wrapper three" style="block-inline">
+              <% if @menus.count > 0 %>
+                <% @menus.each_with_index do |menu, i| %>
+                  <!-- Imágen destacada -->
+                  <% if i == 0 %>
+                    <!-- TODO: Debería ser la agregada más reciente -->
+                    <!-- Imágen NO es FAVORITA -->
+                    <% if menu.fav == false %>
+                      <!-- Imagenes destacadas me las salto ya que van en el panel inferior -->
+                      <div class="product-box"  style="block-inline">
+                        <!-- i class="product-box-image <%= menu.icon %>"></ -->
+                        <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                        <%= image_tag imagen, class: "product-box-image"  %>
+                        <div class="product-box-details">
+                          <%= menu.name %>
+                          <%= menu.description %>
+
+                            <!-- Opciones sobre la Imagen -->
+                            <div class="align-start-box">
+                              <!-- FAVORITO -->
+                              <%= button_to menu_path(menu), method: :patch, class: "btn llink", style: "" do %>
+                                <i class="fa fa-star-o text-warning sombra llink" title="Fijar como favorito"></i>
+                              <% end %>
+
+                              <!-- BORRAR -->
+                              <%= link_to menu, class: "btn llink", style: "block-inline", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro/a de eliminar?\n \tEsta acción, adicionalmente, eliminará lo siguiente (si corresponde):\n \t\t* Las imagenes CMYK asociadas.\n \t\t* El preview del proceso.\n \t\t* Los comentarios y feedback.\n \t\t* Las solicitudes de impresión a proveedores." } do %>
+                                <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                              <% end %>
+                              <!-- BORRAR -->
+                              <!-- % = button_to menu, method: :delete, class: "btn llink", style: "block-inline" do %>
+                                <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                              < % end % -->
+
+                              <!-- EDITAR -->
+                              <%= link_to edit_menu_path(menu), class: "btn llink", style: "block-inline" do %>
+                                <i class="fa fa-pencil text-success sombra llink" styele="block-inline" title="Editar"></i>
+                              <% end %>
+                            </div>
+                            <!-- FIN Opciones sobre la Imagen -->
+
+                        </div>
+                      </div>
+                    <% end %>
+                    <!-- FIN Imágen NO es FAVORITA -->
+                  <!-- FIN Imágen destacada -->
+                  <% else %>
+                    <!--Imágenes comunes -->
+                    <% if i < 4 %>
+                      <!--Imágen NO es FAVORITA -->
+                      <% if menu.fav == false %>
+                        <!-- Set de imágenes comunes -->
+                        <div class="product-box medium"  style="block-inline">
+                          <!-- i class="product-box-image <%= menu.icon %>"></ -->
+                          <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                          <%= image_tag imagen, class: "product-box-image" %>
+                          <div class="product-box-details fa-x4">
+                            <%= menu.name %>
+                            <%= menu.description %>
+                            
+                            <!-- Opciones sobre la Imagen -->
+                            <div class="align-start-box">
+                              <!-- FAVORITO -->
+                              <%= button_to edit_menu_path(menu), method: :update, class: "btn llink", style: "" do %>
+                                <i class="fa fa-star-o text-warning sombra llink" title="Fijar como favorito"></i>
+                              <% end %>
+
+                              <!-- BORRAR -->
+                              <%= link_to menu, class: "btn llink", style: "block-inline", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro/a de eliminar?\n \tEsta acción, adicionalmente, eliminará lo siguiente (si corresponde):\n \t\t* Las imagenes CMYK asociadas.\n \t\t* El preview del proceso.\n \t\t* Los comentarios y feedback.\n \t\t* Las solicitudes de impresión a proveedores." } do %>
+                                <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                              <% end %>
+
+                              <!-- EDITAR -->
+                              <%= link_to edit_menu_path(menu), class: "btn llink", style: "block-inline" do %>
+                                <i class="fa fa-pencil text-success sombra llink" styele="block-inline" title="Editar"></i>
+                              <% end %>
+                            </div>
+                            <!-- FIN Opciones sobre la Imagen -->
+                          </div>
+                        </div>
+                        <!-- FIN Set de imágenes comunes -->
+                      <% end %>
+                      <!-- FIN Imágen NO es FAVORITA -->
+                    <!--FIN Imágenes comunes -->
+                    
+                    <% else %>
+                    <!-- TODO: Esta sección NO SE ESTA VISUALIZANDO -->
+                      <div class="app-content-field second">
+                        <div class="product-box-wrapper three">
+                          <div class="product-box">
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                            <div class="product-box-details">X Mirrors <span>35</span></div>
+                          </div>
+                          <div class="product-box ">
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                            <div class="product-box-details">X Plants <span>25</span></div>
+                          </div>
+                          <div class="product-box">
+                            <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                            <%= image_tag imagen, class: "product-box-image" %>
+                            <div class="product-box-details">X Bathroom <span>25</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end  %>
+                <% end %>
+              <% else %>
+                <h3 class="content-title" style="color: red;">No se ha encontrado resultados para el filtro seleccionado</h3>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección FAVORITOS -->  
+        <br>
+        <i class="content-title">Favoritos</i>
+        <div class="app-content-field second">
+          <div class="product-box-wrapper three">
+            <% #Menu.new %>
+            <% p @menus_favoritos.count  %>
+            <% if @menus_favoritos.count > 0 %>
+              <% @menus_favoritos.each_with_index do |menu_favorito, i| %>
+                <!-- Mostrar imagenes marcadas como favoritas -->
+                <% if menu_favorito.fav == true %>
+                  <div class="product-box large">
+                    <!-- i class="product-box-image <%= menu_favorito.icon %>"></ -->
+                    <% imagen = "http://placeimg.com/" + rand(320..350).to_s + "/" + rand(320..350).to_s + "/" + categoria_imagenes[rand(5)] %>
+                    <%= image_tag imagen, class: "product-box-image" %>
+
+                    <div class="product-box-details fa-x4">
+                      <%= menu_favorito.name %>
+                      <%= menu_favorito.description %>
+                      
+                      <!-- Opciones sobre la Imagen -->
+                      <div class="align-start-box">
+                        <!-- FAVORITO -->
+                        <%= button_to menu_favorito, method: :update, class: "btn llink", style: "" do %>
+                          <i class="fa fa-star text-warning sombra llink" title="Quitar de favoritos"></i>
+                        <% end %>
+
+                        <!-- BORRAR -->
+                        <%= link_to menu_favorito, class: "btn llink", style: "block-inline", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro/a de eliminar?\n \tEsta acción, adicionalmente, eliminará lo siguiente (si corresponde):\n \t\t* Las imagenes CMYK asociadas.\n \t\t* El preview del proceso.\n \t\t* Los comentarios y feedback.\n \t\t* Las solicitudes de impresión a proveedores.\n Si lo que buscas es sólo quitar de favoritos, utiliza la estrella en lugar del basurero." } do %>
+                          <i class="fa fa-trash text-danger sombra llink" style="block-inline" title="Borrar!"></i>
+                        <% end %>
+
+                        <!-- EDITAR -->
+                        <%= link_to edit_menu_path(menu_favorito), class: "btn llink", style: "block-inline" do %>
+                          <i class="fa fa-pencil text-success sombra llink" styele="block-inline" title="Editar"></i>
+                        <% end %>
+                      </div>
+                      <!-- FIN Opciones sobre la Imagen -->
+                    </div>
+                  </div>
+                <% end %>
+                <!-- FIN Mostrar imagenes marcadas como favoritas -->
+              <% end %>
+            <% else %>
+              <h3 class="content-title" style="color: red;">No se hay resultados para el filtro seleccionado</h3>
+            <% end %>
+          </div>
+        </div>
+        <!-- FIN Sección FAVORITOS -->
+      </div>
+
+        <!-- Botonera de NAVEGACIÓN -->
+        <div class="align-center-box">
+          <!-- Paginación -->  
+          <%= paginate @menus %>
+          <!-- FIN Paginación -->
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="align-start-box">
+            <!-- HOME -->
+            <%= link_to welcome_index_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+              <i class="fa fa-home  page-link  llink" aria-hidden="true" title="Ir al Home"></i>
+            <% end %>
+            <!-- FIN HOME -->
+
+            <!-- NUEVO -->
+            <%= link_to new_menu_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+              <i class="fa fa-plus page-link llink" aria-hidden="true" title="Nuevo"></i>
+            <% end %>
+            <!-- FIN NUEVO -->
+
+            <!-- VOLVER -->
+            <%= link_to menus_path, class: "page-item", style: "text-decoration: none; display: inline-block" do %>
+              <i class="fa fa-fast-backward pagination pagination-box page-link llink" aria-hidden="true" title="Volver"></i>
+            <% end %>
+            <!-- FIN VOLVER-->
+          </div>
+        </div>
+        <!-- FIN Botonera de navegación -->
+    </div>
+    <!-- FIN CONTENIDO -->
+
+
+    <!-- Panel derecho; imagenes y parámetros de la imagén clickeada de la colección de imágenes -->
+    <div class="app-right">
+      <button class="app-right-hide">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="app-right-content">
+        <ul class="product-list">
+          <li class="product-list-item fadeIn">
+            <div class="product-img-wrapper">
+              <img class="product-image" src="https://images.unsplash.com/photo-1544030288-e6e6108867f6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGZ1cm5pdHVyZXxlbnwwfDF8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" />
+            </div>
+            <div class="product-list-itemContent">
+              <div class="product-info">
+                <h2 class="product-info-header">
+                  Monokai
+                </h2>
+                <p class="product-info-subheader">
+                  125.00 $ <span class="product-color">Yellow</span>
+                </p>
+              </div>
+              <div class="product-amount-wrapper">
+                <button class="product-amount-button increase">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+                <span class="product-amount">2</span>
+                <button class="product-amount-button decrease">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="product-list-item fadeIn">
+            <div class="product-img-wrapper">
+              <img class="product-image" src="https://images.unsplash.com/photo-1541533260371-b8fc9b596d84?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80" alt="product"/>
+            </div>
+            <div class="product-list-itemContent">
+              <div class="product-info">
+                <h2 class="product-info-header">
+                  Night Owl
+                </h2>
+                <p class="product-info-subheader">
+                  225.00 $ <span class="product-color">Gray</span>
+                </p>
+              </div>
+              <div class="product-amount-wrapper">
+                <button class="product-amount-button increase">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+                <span class="product-amount">1</span>
+                <button class="product-amount-button decrease">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="product-list-item fadeIn">
+            <div class="product-img-wrapper">
+              <img class="product-image" src="https://images.unsplash.com/photo-1541533260371-b8fc9b596d84?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80" alt="product"/>
+            </div>
+            <div class="product-list-itemContent">
+              <div class="product-info">
+                <h2 class="product-info-header">
+                  Night Owl
+                </h2>
+                <p class="product-info-subheader">
+                  225.00 $ <span class="product-color">Gray</span>
+                </p>
+              </div>
+              <div class="product-amount-wrapper">
+                <button class="product-amount-button increase">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+                <span class="product-amount">1</span>
+                <button class="product-amount-button decrease">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="product-list-item fadeIn">
+            <div class="product-img-wrapper">
+              <img class="product-image" src="https://images.unsplash.com/photo-1541533260371-b8fc9b596d84?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80" alt="product"/>
+            </div>
+            <div class="product-list-itemContent">
+              <div class="product-info">
+                <h2 class="product-info-header">
+                  Night Owl
+                </h2>
+                <p class="product-info-subheader">
+                  225.00 $ <span class="product-color">Gray</span>
+                </p>
+              </div>
+              <div class="product-amount-wrapper">
+                <button class="product-amount-button increase">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+                <span class="product-amount">1</span>
+                <button class="product-amount-button decrease">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+
+
+          <li class="product-list-item fadeIn">
+            <div class="product-img-wrapper">
+              <img class="product-image" src="https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80" />
+            </div>
+            <div class="product-list-itemContent">
+              <div class="product-info">
+                <h2 class="product-info-header">
+                  Material
+                </h2>
+                <p class="product-info-subheader">
+                  105.00 $ <span class="product-color">Gray</span>
+                </p>
+              </div>
+              <div class="product-amount-wrapper">
+                <button class="product-amount-button increase">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+                <span class="product-amount">1</span>
+                <button class="product-amount-button decrease">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="product-details fadeIn">
+          <div class="product-details-line">
+            <span class="product-details-text">Sub Total</span>
+            <span class="product-details-text amount">455.00 $</span>
+          </div>
+          <div class="product-details-line">
+            <span class="product-details-text">Shipment</span>
+            <a href="#" class="product-details-link">Check details</a>
+            <span class="product-details-text amount">15.00 $</span>
+          </div>
+          <div class="product-details-line">
+            <span class="product-details-text">Discount</span>
+            <a href="#" class="product-details-link">Remove</a>
+            <span class="product-details-text amount">-10.00 $</span>
+          </div>
+          <div class="product-details-summary">
+            <span class="product-details-text">Total</span>
+            <span class="product-details-text amount">460.00 $</span>
+          </div>
+        </div>
+      </div>
+      <button class="checkout-button">Un botón que hace algo...</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2 @@
+module ImagesTypesHelper
+end

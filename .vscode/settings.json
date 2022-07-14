@@ -1,0 +1,8 @@
+{
+    "editor.fontFamily": "inconsolata Light",
+    "editor.fontSize": 14,
+    "scm.inputFontFamily": "inconsolata Light",
+    "terminal.integrated.fontFamily": "inconsolata Light",
+    "notebook.outputFontFamily": "inconsolata Light",
+    "markdown.preview.fontFamily": "-apple-system, 'inconsolata Light', BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif"
+}

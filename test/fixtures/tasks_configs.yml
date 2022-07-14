@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 1
+  image_id: 1
+  config_id: 1
+  config_value: MyString
+  enabled: false
+
+two:
+  task_id: 1
+  image_id: 1
+  config_id: 1
+  config_value: MyString
+  enabled: false

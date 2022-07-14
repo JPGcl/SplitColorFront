@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SplitColor</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100&family=Montserrat:ital,wght@0,200;0,500;0,700;1,200&display=swap" rel="stylesheet">
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- link rel="stylesheet" href="/assets/style.css" as="style" -->
+    <!-- link rel="stylesheet" href="/assets/cardsX.css" as="style" -->
+    <link rel="stylesheet" href="/assets/alineacion.css" as="style">
+    <link rel="stylesheet" href="/assets/dashboard.css" as="style">
+    <link rel="stylesheet" href="/assets/kaminari.css" as="style">
+    <link rel="stylesheet" href="/assets/tooltip.css" as="style">
+  </head>
+  <body>
+    <!-- % = include_gon % -->
+
+    
+    <%= yield %>
+
+    <div id="" class="container">
+      <% if notice %>
+      <!--
+        <p class="notice"><%= notice %></p>
+        <p class="alert alert-success"><%= notice %></p>
+      -->
+        <% flash[:info] = notice %>
+        <% #= flash_message %>
+      <% end %>
+      <% if alert %>
+      <!--
+        <p class="alert"><%= alert %></p>
+        <p class="alert alert-danger"><%= alert %></p>
+      -->
+
+        <% flash[:warning] = alert %>
+        <% #= flash_message %>
+      <% end %>
+    </div>
+
+    <script>
+      function fadeOutEffect(thisElement) {
+        const fadeTarget = document.getElementById("flash_message");
+        fadeTarget.style.visibility = "hidden";
+      }
+    </script>
+
+    <script>
+      var listItems = document.querySelectorAll('.fadeInx');
+      var productBoxes = document.querySelectorAll('.product-box');
+
+      listItems.forEach( function(listItem, index) {
+        listItem.setAttribute('stylexxxxxx', `animation-delayxxxxxx: ${index * .2}s`);
+      });
+
+      productBoxes.forEach( function(productBox, index) {
+        productBox.setAttribute('style', `animation-delay: ${index * .1}s`);
+
+      });
+
+      document.querySelector('.btn').addEventListener('click', function () {
+        document.querySelector('.app-right').classList.add('isOpen');
+        document.querySelector('.app-left').classList.add('hide');
+      });
+
+      document.querySelector('.app-right-hide').addEventListener('click', function () {
+        document.querySelector('.app-right').classList.remove('isOpen');
+        document.querySelector('.app-left').classList.remove('hide');
+      });
+    </script>
+
+    <script>
+      // Mostrar imagenes relacionadas producto del proceso de transformación 
+      // de la imagen principal (main_picture) a la técnica cmyk.
+      function image_ralacionada_html() {
+        const div = document.createElement("div");
+        const app = document.getElementById("image_rel")
+        div.textContent = app.getAttribute("dataimage");
+        //alert(app.getAttribute("dataimage"));
+        //alert(div.textContent);
+
+        app.insertAdjacentElement("afterbegin", div );
+      }
+    </script>
+  </body>
+</html>
